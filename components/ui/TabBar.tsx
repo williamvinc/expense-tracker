@@ -66,20 +66,22 @@ export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
                   accessibilityRole="button"
                   accessibilityLabel="Add new transaction"
                   onPress={handleAddPress}
+                  activeOpacity={0.85}
                   style={[styles.addBtnOuter, { 
                     shadowColor: currentAccentColor,
-                    shadowOffset: { width: 0, height: 8 },
-                    shadowOpacity: 0.5,
-                    shadowRadius: 16,
+                    shadowOffset: { width: 0, height: 4 },
+                    shadowOpacity: 0.4,
+                    shadowRadius: 8,
+                    elevation: 8,
                   }]}
                 >
                   <LinearGradient
-                    colors={[currentAccentColor, adjustColor(currentAccentColor, -20)]}
+                    colors={[adjustColor(currentAccentColor, 40), adjustColor(currentAccentColor, -20)]}
                     style={styles.addBtnGradient}
                     start={{ x: 0, y: 0 }}
                     end={{ x: 1, y: 1 }}
                   >
-                    <IconSymbol size={28} name="plus" color="#FFFFFF" />
+                    <IconSymbol size={24} name="plus" color="#FFFFFF" />
                   </LinearGradient>
                 </TouchableOpacity>
               </View>

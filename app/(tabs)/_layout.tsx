@@ -25,7 +25,7 @@ export default function TabLayout() {
           title: 'Home',
           tabBarIcon: ({ color, focused }) => (
              <IconSymbol 
-                size={28} 
+                size={22} 
                 name="house.fill" 
                 color={color} 
                 style={{ opacity: focused ? 1 : 0.7 }}
@@ -39,7 +39,7 @@ export default function TabLayout() {
           title: 'Stats',
           tabBarIcon: ({ color, focused }) => (
              <IconSymbol 
-                size={28} 
+                size={22} 
                 name="chart.pie.fill" 
                 color={color}
                 style={{ opacity: focused ? 1 : 0.7 }}
@@ -85,7 +85,7 @@ export default function TabLayout() {
           title: 'Wallet',
           tabBarIcon: ({ color, focused }) => (
              <IconSymbol 
-                size={28} 
+                size={22} 
                 name="creditcard.fill" 
                 color={color} 
                 style={{ opacity: focused ? 1 : 0.7 }}
@@ -99,7 +99,7 @@ export default function TabLayout() {
           title: 'Profile',
           tabBarIcon: ({ color, focused }) => (
              <IconSymbol 
-                size={28} 
+                size={22} 
                 name="person.fill" 
                 color={color} 
                 style={{ opacity: focused ? 1 : 0.7 }}
