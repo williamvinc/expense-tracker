@@ -5,8 +5,8 @@ import { SymbolWeight, SymbolViewProps } from 'expo-symbols';
 import { ComponentProps } from 'react';
 import { OpaqueColorValue, type StyleProp, type TextStyle } from 'react-native';
 
-type IconMapping = Record<SymbolViewProps['name'], ComponentProps<typeof MaterialIcons>['name']>;
-type IconSymbolName = keyof typeof MAPPING;
+type IconMapping = Record<string, ComponentProps<typeof MaterialIcons>['name']>;
+type IconSymbolName = string;
 
 /**
  * Add your SF Symbols to Material Icons mappings here.
@@ -18,6 +18,59 @@ const MAPPING = {
   'paperplane.fill': 'send',
   'chevron.left.forwardslash.chevron.right': 'code',
   'chevron.right': 'chevron-right',
+  'chart.pie.fill': 'pie-chart',
+  'plus.circle.fill': 'add-circle',
+  'plus': 'add',
+  'creditcard.fill': 'credit-card',
+  'person.fill': 'person',
+  'calendar': 'calendar-today',
+  'chevron.up': 'expand-less',
+  'chevron.down': 'expand-more',
+  'eye': 'visibility',
+  'eye.slash': 'visibility-off',
+  'arrow.down': 'arrow-downward',
+  'arrow.up': 'arrow-upward',
+  'lock.fill': 'lock',
+  'delete.left.fill': 'backspace',
+  'faceid': 'face',
+  'star.fill': 'star',
+  'xmark': 'close',
+  'gear': 'settings',
+  'pencil': 'edit',
+  'cart.fill': 'shopping-cart',
+  'shopping_cart': 'shopping-cart',
+  'banknote': 'attach-money',
+  'lock': 'lock-outline',
+  'questionmark.circle': 'help-outline',
+  'heart.fill': 'favorite',
+  'arrow.up.right': 'open-in-new',
+  'hammer.fill': 'build',
+  'chevron.left': 'chevron-left',
+  'trash': 'delete',
+  'trash.fill': 'delete',
+  'checkmark': 'check',
+  'lunch_dining': 'restaurant',
+  'fork.knife': 'restaurant',
+  'medical_services': 'local-hospital',
+  'cross.fill': 'local-hospital',
+  // Additional mappings
+  'sports_esports': 'sports-esports',
+  'gamecontroller.fill': 'sports-esports',
+  'trending_up': 'trending-up',
+  'chart.line.uptrend.xyaxis': 'trending-up',
+  'card_giftcard': 'card-giftcard',
+  'gift.fill': 'card-giftcard',
+  'more_horiz': 'more-horiz',
+  'ellipsis': 'more-horiz',
+  'directions_car': 'directions-car',
+  'car.fill': 'directions-car',
+  'bag.fill': 'shopping-bag',
+  'doc.text.fill': 'description',
+  'building.2.fill': 'business',
+  'house': 'home',
+  'at': 'alternate-email',
+  'envelope.fill': 'email',
+  'headphones': 'headset',
 } as IconMapping;
 
 /**
@@ -37,5 +90,6 @@ export function IconSymbol({
   style?: StyleProp<TextStyle>;
   weight?: SymbolWeight;
 }) {
-  return <MaterialIcons color={color} size={size} name={MAPPING[name]} style={style} />;
+  const iconName = MAPPING[name] || name;
+  return <MaterialIcons color={color} size={size} name={iconName as any} style={style} />;
 }

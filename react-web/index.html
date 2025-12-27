@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    
+    <!-- PWA / Native App Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="theme-color" content="#F3F4F6" />
+    <meta name="mobile-web-app-capable" content="yes" />
+
+    <title>Virtual Wallet</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              // Using CSS variables with <alpha-value> placeholder allows Tailwind's opacity utilities (e.g. bg-primary/50) to work dynamically
+              primary: "rgb(var(--color-primary) / <alpha-value>)", 
+              "primary-dark": "rgb(var(--color-primary-dark) / <alpha-value>)",
+              
+              // Surface / Backgrounds
+              "surface-light": "#FFFFFF",
+              "background-light": "#F7F7F5",
+              "background-dark": "#121212",
+              
+              // Cards
+              "card-light": "#FFFFFF",
+              "card-dark": "#1E1E1E",
+              
+              // Text
+              "text-primary": "#111827",
+              "text-secondary": "#6B7280",
+              
+              "text-primary-light": "#111827",
+              "text-primary-dark": "#F3F4F6",
+              "text-secondary-light": "#6B7280",
+              "text-secondary-dark": "#9CA3AF",
+              
+              // Utilities
+              "success-green": "#10B981",
+              "expense-red": "#EF4444",
+            },
+            fontFamily: {
+              sans: ["Plus Jakarta Sans", "sans-serif"],
+              display: ["Inter", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "1rem",
+              "3xl": "2rem",
+              "4xl": "2.5rem",
+            },
+            boxShadow: {
+              'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+              'card': '0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025)',
+              'input': '0 2px 6px -1px rgba(0, 0, 0, 0.05)',
+            }
+          },
+        },
+      };
+    </script>
+    <style>
+        :root {
+            /* Default accent color (Yellow) RGB values */
+            --color-primary: 253 224 71;
+            --color-primary-dark: 234 179 8;
+        }
+
+        body {
+            background-color: #F7F7F5;
+            color: #111827;
+            /* Disable pull-to-refresh on mobile chrome to maintain app feel */
+            overscroll-behavior-y: none;
+            min-height: 100vh;
+        }
+        
+        /* Dark Mode Body Background */
+        .dark body {
+            background-color: #121212;
+            color: #F3F4F6;
+        }
+        
+        /* Native App Feel Overrides */
+        * {
+            /* Remove blue highlight on tap */
+            -webkit-tap-highlight-color: transparent;
+            /* Prevent text selection to feel like an app, not a document */
+            user-select: none;
+            -webkit-user-select: none;
+            /* Smooth scrolling */
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Re-enable text selection for inputs where typing is needed */
+        input, textarea {
+            user-select: text;
+            -webkit-user-select: text;
+        }
+
+        /* Hide scrollbar */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+        .animate-slide-up {
+            animation: slideUp 0.3s ease-out forwards;
+        }
+
+        @keyframes scaleUp {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .animate-scale-up {
+            animation: scaleUp 0.2s ease-out forwards;
+        }
+
+        @keyframes bounceSlow {
+            0%, 100% { transform: translateY(-5%); }
+            50% { transform: translateY(5%); }
+        }
+        .animate-bounce-slow {
+            animation: bounceSlow 2s infinite ease-in-out;
+        }
+        
+        .pb-safe {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+
+        /* Blur Accents for Settings Page */
+        .blur-accent {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgb(var(--color-primary) / 0.2); /* Dynamic Accent */
+            filter: blur(80px);
+            z-index: 0;
+            border-radius: 50%;
+            pointer-events: none;
+            transition: background 0.3s ease;
+        }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react-router-dom": "https://esm.sh/react-router-dom@^6.28.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "@lottiefiles/dotlottie-react": "https://esm.sh/@lottiefiles/dotlottie-react@0.8.8?external=react,react-dom"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
